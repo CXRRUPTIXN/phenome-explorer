@@ -1,0 +1,7 @@
+class Genes:
+
+    def __init__(self):
+        self.geno = []
+        self.phenotype = ''
+
+p = Genes()
