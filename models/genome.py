@@ -46,9 +46,10 @@ class Gene:
     @property # (I hope I'm using this correctly)
     def geneString(self): # TODO This may or may not be extraneous
         result = ''
-        for a in self.alleles:
+        for a in self.allelePair:
             # TODO Sort this so dominant alleles sort in front of recessive ones
             result += a.value
+        return result
 
     def __init__(self, alleleString=False):
         self.name = ''
