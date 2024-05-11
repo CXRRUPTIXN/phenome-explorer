@@ -1,6 +1,6 @@
 from enum import Enum
 
-from genome import *
+from models.genome import *
 
 class AgoutiGene(Gene):
     class Alleles(Enum):
