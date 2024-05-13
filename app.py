@@ -2,8 +2,8 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 
 from flask_wtf import FlaskForm, CSRFProtect
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms import FormField, RadioField, SubmitField
+from wtforms.validators import AnyOf, DataRequired, Length
 
 from models.horse_genes import AgoutiGene
 
@@ -15,12 +15,32 @@ csrf = CSRFProtect(app)
 
 testGene = AgoutiGene()
 
+class AlleleForm(FlaskForm):
+    alleleField = RadioField(
+        'Agouti Gene:',
+        # Agouti gene is always present, answer may not be None
+        validators = [AnyOf(a.value for a in AgoutiGene.Alleles)],
+        choices    = [a.value for a in AgoutiGene.Alleles]
+    )
+
 class GeneForm(FlaskForm):
-    name = StringField('Which actor is your favorite?', validators=[DataRequired(), Length(10, 40)])
+    # TODO Render these using a generated list of genes, not manually
+
+    # Each gene requires a pair of alleles
+    firstAllele = FormField(AlleleForm)
+    secondAllele = FormField(AlleleForm)
+
+
     submit = SubmitField('Submit')
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def hello_world():
     form = GeneForm()
-    # return '<h1>' + testGene.geneString + '</h1>'
-    return render_template('index.html', form=form)
+
+    # Generate phenotype value
+    phenotype = ''
+    if form.validate_on_submit():
+        agoutiValue = form.agoutiField.data
+        phenotype += agoutiValue
+
+    return render_template('index.html', form=form, phenotype=phenotype)

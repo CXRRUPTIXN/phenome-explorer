@@ -33,6 +33,10 @@ class Gene:
                     name = ''
                     break # Jump out of for loop
                     
+    # @abstractmethod
+    # def listOptionalValues(self):
+    #     pass
+    
     # Returns inheritance type of this gene - dominant, recessive, co-dominant, etc.
     @abstractmethod
     def getGeneType(self):
