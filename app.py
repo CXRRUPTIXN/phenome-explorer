@@ -19,7 +19,7 @@ class AlleleForm(FlaskForm):
     alleleField = RadioField(
         'Agouti Gene:',
         # Agouti gene is always present, answer may not be None
-        validators = [AnyOf([a.value for a in AgoutiGene.Alleles])],
+        validators = [AnyOf([a.value for a in AgoutiGene.Alleles], message="Must select a value!")],
         choices    = [a.value for a in AgoutiGene.Alleles]
     )
 
