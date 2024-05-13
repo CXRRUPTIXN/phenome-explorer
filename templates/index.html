@@ -3,16 +3,18 @@
 <!doctype html>
 <head>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
     <title>Phenome Explorer</title>
 
 </head>
 
 <body>
 
-    {{ render_form(form) }}
+    {% include 'form.html' %}
 
-    {{ phenotype }}
+    <div>{{ phenotype }}</div>
 
-    <h1>Hello, World!</h1>
+    <div><h1>Hello, World!</h1></div>
 
 </body>

@@ -1,0 +1,17 @@
+{% from 'bootstrap5/form.html' import render_field %}
+
+
+<form method="post">
+    <table>
+        {{ form.csrf_token() }}
+        <tr>
+            <td>{{ render_field(form.firstAllele) }}</td>
+            <td>{{ render_field(form.secondAllele) }}</td>
+        </tr>
+    </table>
+
+    <div>
+        {{ render_field(form.submit) }}
+    </div>
+
+</form>

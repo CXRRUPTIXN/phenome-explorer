@@ -19,7 +19,7 @@ class AlleleForm(FlaskForm):
     alleleField = RadioField(
         'Agouti Gene:',
         # Agouti gene is always present, answer may not be None
-        validators = [AnyOf(a.value for a in AgoutiGene.Alleles)],
+        validators = [AnyOf([a.value for a in AgoutiGene.Alleles])],
         choices    = [a.value for a in AgoutiGene.Alleles]
     )
 
@@ -40,7 +40,9 @@ def hello_world():
     # Generate phenotype value
     phenotype = ''
     if form.validate_on_submit():
-        agoutiValue = form.agoutiField.data
-        phenotype += agoutiValue
+        print(form.firstAllele)
+        firstVal = form.firstAllele.alleleField.data
+        secondVal = form.secondAllele.alleleField.data
+        phenotype = firstVal + secondVal
 
     return render_template('index.html', form=form, phenotype=phenotype)
