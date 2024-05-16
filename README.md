@@ -8,6 +8,8 @@ Venv setup (With env named 'phenome-env'):
 
 Update requirements.txt:
 `>> pip freeze > requirements.txt`
+Install from requirements.txt:
+`>> pip install -r requirements.txt`
 
 Running program:
 `>> flask run` If in base directory
