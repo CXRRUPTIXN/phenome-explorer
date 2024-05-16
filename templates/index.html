@@ -3,18 +3,27 @@
 <!doctype html>
 <head>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
     <title>Phenome Explorer</title>
 
 </head>
 
-<body>
+<body class="p-5">
 
-    {% include 'form.html' %}
+    <div class="d-flex justify-content-center">
 
-    <div>{{ phenotype }}</div>
+        <header">
+            <h1 class="page-header">Phenome Explorer</h1>
+        </header>
 
-    <div><h1>Hello, World!</h1></div>
+        {% include 'form.html' %}
+
+        <div>{{ phenotype }}</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
 </body>

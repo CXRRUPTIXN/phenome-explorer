@@ -2,15 +2,13 @@
 
 
 <form method="post">
-    <table>
+    <div class="d-flex justify-content-center">
         {{ form.csrf_token() }}
-        <tr>
-            <td>{{ render_field(form.firstAllele) }}</td>
-            <td>{{ render_field(form.secondAllele) }}</td>
-        </tr>
-    </table>
+        <div class="p-2">{{ render_field(form.firstAllele) }}</div>
+        <div class="p-2">{{ render_field(form.secondAllele) }}</div>
+    </div>
 
-    <div>
+    <div class="d-flex justify-content-center">
         {{ render_field(form.submit) }}
     </div>
 

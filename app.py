@@ -27,8 +27,8 @@ class GeneForm(FlaskForm):
     # TODO Render these using a generated list of genes, not manually
 
     # Each gene requires a pair of alleles
-    firstAllele = FormField(AlleleForm)
-    secondAllele = FormField(AlleleForm)
+    firstAllele = FormField(AlleleForm, name="X_")
+    secondAllele = FormField(AlleleForm, name="_X")
 
 
     submit = SubmitField('Submit')
