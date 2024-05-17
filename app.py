@@ -27,8 +27,8 @@ class GeneForm(FlaskForm):
     # TODO Render these using a generated list of genes, not manually
 
     # Each gene requires a pair of alleles
-    firstAllele = FormField(AlleleForm, name="X_")
-    secondAllele = FormField(AlleleForm, name="_X")
+    firstAllele = FormField(AlleleForm, name="X\\_")
+    secondAllele = FormField(AlleleForm, name="\\_X")
 
 
     submit = SubmitField('Submit')
@@ -40,7 +40,6 @@ def hello_world():
     # Generate phenotype value
     phenotype = ''
     if form.validate_on_submit():
-        print(form.firstAllele)
         firstVal = form.firstAllele.alleleField.data
         secondVal = form.secondAllele.alleleField.data
         phenotype = firstVal + secondVal
