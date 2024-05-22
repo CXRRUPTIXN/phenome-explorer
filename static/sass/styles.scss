@@ -10,6 +10,18 @@
     color: red;
 }
 
+@mixin alleleField {
+    label {
+        margin-left: auto;
+        margin-right: auto;
+        color: green;
+    }
+}
+
+.allele-field {
+    @include alleleField;
+}
+
 .test-class {
     @include headerTest
 }

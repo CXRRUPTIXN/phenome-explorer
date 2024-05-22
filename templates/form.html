@@ -2,10 +2,26 @@
 
 
 <form method="post">
-    <div class="d-flex justify-content-center">
-        {{ form.csrf_token() }}
-        <div class="p-2">{{ render_field(form.firstAllele) }}</div>
-        <div class="p-2">{{ render_field(form.secondAllele) }}</div>
+    <div class="d-flex">
+        {% if 'csrf_token' in form %}
+            {{ form.csrf_token() }}
+        {% endif %}
+
+        <div class="p-2">{{ render_field(form.firstAlleles[0]) }}</div>
+        <div class="p-2">{{ render_field(form.secondAlleles[0]) }}</div>
+
+        <!-- <div class="allele-field">
+            <label for="{{ form.groups[0] }}-first">X_
+                <label for="testFirst">
+                    <input type="radio" id="testFirst" name="{{ form.groups[0] }}-first" value="A" /> A
+                </label>
+                <label for="testSecond">
+                    <input type="radio" id="testSecond" name="{{ form.groups[0] }}-first" value="a" /> a
+                </label>
+
+            </label>
+        </div> -->
+
     </div>
 
     <div class="d-flex justify-content-center">

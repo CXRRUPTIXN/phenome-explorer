@@ -7,6 +7,8 @@ from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import FormField, RadioField, SubmitField
 from wtforms.validators import AnyOf, DataRequired, Length
 
+from pprint import pprint
+
 from models.horse_genes import AgoutiGene
 
 app = Flask(__name__)
@@ -20,6 +22,7 @@ csrf = CSRFProtect(app)
 
 testGene = AgoutiGene()
 
+
 class AlleleForm(FlaskForm):
     alleleField = RadioField(
         'Agouti Gene:',
@@ -28,25 +31,63 @@ class AlleleForm(FlaskForm):
         choices    = [a.value for a in AgoutiGene.Alleles]
     )
 
+# class GeneGroupForm(FlaskForm):
+#     # TODO Render these using a generated list of genes, not manually
+
+#     def __init__(self, prefix):
+#         super()
+#         self.prefix = prefix
+
+#         # Each gene requires a pair of alleles
+#         self.firstAllele = FormField(AlleleForm, name=("{}-first".format(self.prefix)), label="X_")
+#         self.secondAllele = FormField(AlleleForm, name="agoutiSecond", label="_X")
+
+
+#         self.submit = SubmitField('Submit')
+
 class GeneForm(FlaskForm):
-    # TODO Render these using a generated list of genes, not manually
 
-    # Each gene requires a pair of alleles
-    firstAllele = FormField(AlleleForm, name="X\\_")
-    secondAllele = FormField(AlleleForm, name="\\_X")
+    # def __init__(self, groups):
+    #     super(GeneForm, self).__init__(self)
+    groups = ['agouti']
+    firstAlleles = []
+    secondAlleles = []
 
-
+    for i in range(len(groups)):
+        firstAlleles.append(FormField(AlleleForm, name=(str(groups[i])+'-first'), label="X_"))
+        # secondAlleles.append(FormField(AlleleForm, name=(str(groups[i])+'-second'), label="_X"))
+    
     submit = SubmitField('Submit')
+
+
+
+
+
+# TODO this is VERY TEMPORARY and should be implemented better later
+# agoutiForm = GeneGroupForm('agouti')
+geneList = ['agouti']
+
+
 
 @app.route("/", methods=['GET', 'POST'])
 def hello_world():
+
     form = GeneForm()
+
+
 
     # Generate phenotype value
     phenotype = ''
+
+
+
     if form.validate_on_submit():
-        firstVal = form.firstAllele.alleleField.data
-        secondVal = form.secondAllele.alleleField.data
-        phenotype = firstVal + secondVal
+        pprint(form)
+        # firstVal = form.firstAlleles[0].alleleField.data
+        # secondVal = form.secondAlleles[0].alleleField.data
+
+        # firstVal = form.groups[0].firstAllele.alleleField.data
+        # secondVal = form.groups[0].secondAllele.alleleField.data
+        # phenotype = firstVal + secondVal
 
     return render_template('index.html', form=form, phenotype=phenotype)
