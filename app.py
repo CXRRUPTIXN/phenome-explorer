@@ -1,3 +1,5 @@
+import sass
+
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 
@@ -9,6 +11,9 @@ from models.horse_genes import AgoutiGene
 
 app = Flask(__name__)
 app.secret_key = 'temporary' # TODO factor this out to a separate file
+
+# Compile SASS styles
+sass.compile(dirname=('static/sass/', 'static/css/'))
 
 bootstrap = Bootstrap5(app)
 csrf = CSRFProtect(app)
