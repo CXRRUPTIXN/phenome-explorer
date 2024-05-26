@@ -7,8 +7,23 @@
             {{ form.csrf_token() }}
         {% endif %}
 
-        <div class="p-2">{{ render_field(form.firstAlleles[0]) }}</div>
-        <div class="p-2">{{ render_field(form.secondAlleles[0]) }}</div>
+
+        {% for field in form.fields %}
+            {{ render_field(field) }}
+            <label for="{{ field }}-first">X_
+                <input type="radio" name="{{field}}-first" value="A" />A
+            </label>
+            <label for="{{ field }}-first">
+                <input type="radio" name="{{field}}-first" value="a" />a
+            </label>
+
+            <label for="{{field}}-second">_X
+                <input type="radio" name="{{field}}-second" value="A" />A
+            </label>
+            <label for="{{field}}-second">
+                <input type="radio" name="{{field}}-second" value="a" />a
+            </label>
+        {% endfor %}
 
         <!-- <div class="allele-field">
             <label for="{{ form.groups[0] }}-first">X_

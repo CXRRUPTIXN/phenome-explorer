@@ -52,9 +52,11 @@ class GeneForm(FlaskForm):
     groups = ['agouti']
     firstAlleles = []
     secondAlleles = []
+    fields = []
 
     for i in range(len(groups)):
-        firstAlleles.append(FormField(AlleleForm, name=(str(groups[i])+'-first'), label="X_"))
+        fields.append(FormField(AlleleForm, name=(str(groups[i]) + '-first'), extra_classes="testing-class", label="X_"))
+        # firstAlleles.append(FormField(AlleleForm, name=(str(groups[i])+'-first'), label="X_"))
         # secondAlleles.append(FormField(AlleleForm, name=(str(groups[i])+'-second'), label="_X"))
     
     submit = SubmitField('Submit')
@@ -82,7 +84,8 @@ def hello_world():
 
 
     if form.validate_on_submit():
-        pprint(form)
+        firstVal = form.firstAlleles[0]
+        pprint(form._unbound_fields)
         # firstVal = form.firstAlleles[0].alleleField.data
         # secondVal = form.secondAlleles[0].alleleField.data
 
