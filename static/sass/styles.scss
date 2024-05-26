@@ -5,3 +5,11 @@
 .form-right-column {
     float: right;
 }
+
+@mixin headerTest {
+    color: red;
+}
+
+.test-class {
+    @include headerTest
+}
