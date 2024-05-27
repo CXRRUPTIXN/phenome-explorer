@@ -9,7 +9,6 @@
 
 
         {% for field in form.fields %}
-            {{ render_field(field) }}
             <label for="{{ field }}-first">X_
                 <input type="radio" name="{{field}}-first" value="A" />A
             </label>

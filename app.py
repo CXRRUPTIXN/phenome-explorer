@@ -84,8 +84,8 @@ def hello_world():
 
 
     if form.validate_on_submit():
-        firstVal = form.firstAlleles[0]
-        pprint(form._unbound_fields)
+        # pprint(dir(form))
+        pprint(form.fields[0].kwargs)
         # firstVal = form.firstAlleles[0].alleleField.data
         # secondVal = form.secondAlleles[0].alleleField.data
 
