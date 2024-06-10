@@ -1,40 +1,81 @@
 {% from 'bootstrap5/form.html' import render_field %}
 
 
-<form method="post">
+<form id="genotypesForm" method="post">
     <div class="d-flex">
         {% if 'csrf_token' in form %}
             {{ form.csrf_token() }}
         {% endif %}
 
+        <div class="d-table">
 
-        {% for field in form.fields %}
-            <label for="{{ field }}-first">X_
-                <input type="radio" name="{{field}}-first" value="A" />A
-            </label>
-            <label for="{{ field }}-first">
-                <input type="radio" name="{{field}}-first" value="a" />a
-            </label>
 
-            <label for="{{field}}-second">_X
-                <input type="radio" name="{{field}}-second" value="A" />A
-            </label>
-            <label for="{{field}}-second">
-                <input type="radio" name="{{field}}-second" value="a" />a
-            </label>
-        {% endfor %}
+            {% for f in form.fields %}
 
-        <!-- <div class="allele-field">
-            <label for="{{ form.groups[0] }}-first">X_
-                <label for="testFirst">
-                    <input type="radio" id="testFirst" name="{{ form.groups[0] }}-first" value="A" /> A
-                </label>
-                <label for="testSecond">
-                    <input type="radio" id="testSecond" name="{{ form.groups[0] }}-first" value="a" /> a
-                </label>
+                <div class="d-table-row">
 
-            </label>
-        </div> -->
+                    <h1>{{ f.name }}</h1>
+
+                    <div class="w-50 float-left">
+
+                        <h2>X_</h2>
+                        
+                        <div>
+                            {% for option in f.choices %}
+                                <label for="{{f.name}}-first">
+                                    <input type="radio" name="{{f.name}}-first" value="{{option}}"/>{{option}}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="w-50 float-right">
+
+                        <h2>_X</h2>
+
+                        <div class="d-block float-right">
+                            {% for option in f.choices %}
+                                <label for="{{f.name}}-second">
+                                    <input type="radio" name="{{f.name}}-second" value="{{option}}"/>{{option}}
+                                </label>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br/>
+
+
+
+
+
+                        <!-- {{f.data.firstAllele}} -->
+                        <!-- {% for option in f.data %}
+                            {{ option }}
+                        {% endfor %} -->
+
+                        <!-- {% for choice in f.form %}
+                            yes
+                            {{ choice.fieldName }}
+                        {% endfor %} -->
+
+
+                        <!-- {{ f.firstAllele.choices|pprint }} -->
+
+
+                        <!-- {% for a in f.firstAllele %}
+                            {{ a }}
+                        {% endfor %} -->
+                    
+
+                <!-- </div> -->
+
+                <!-- <br/> -->
+
+            {% endfor %}
+        </div>
 
     </div>
 
