@@ -224,7 +224,7 @@ def hello_world():
     if form.validate_on_submit():
         # pprint(dir(form))
         pprint('i got to this point')
-        pprint(vars(form.fields[0]))
+        # pprint(vars(form.fields[0]))
         # firstVal = form.fields
         # firstVal = form.firstAlleles[0].alleleField.data
         # secondVal = form.secondAlleles[0].alleleField.data
