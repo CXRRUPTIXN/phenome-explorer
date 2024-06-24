@@ -7,38 +7,46 @@
             {{ form.csrf_token() }}
         {% endif %}
 
-        <div class="d-table">
+        <div class="d-table w-100">
 
 
             {% for f in form.fields %}
 
                 <div class="d-table-row">
 
-                    <h1>{{ f.name }}</h1>
+                    <h1 class="text-center">{{ f.name }}</h1>
 
-                    <div class="w-50 float-left">
+                    <div class="form-left-column">
 
                         <h2>X_</h2>
                         
-                        <div>
-                            {% for option in f.choices %}
-                                <label for="{{f.name}}-first">
-                                    <input type="radio" name="{{f.name}}-first" value="{{option}}"/>{{option}}
-                                </label>
-                            {% endfor %}
+                        <div class="d-block float-left">
+                            <ul>
+                                {% for option in f.choices %}
+                                    <li>
+                                        <label for="{{f.name}}-first">
+                                            <input type="radio" name="{{f.name}}-first" value="{{option}}"/>{{option}}
+                                        </label>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="w-50 float-right">
+                    <div class="form-right-column">
 
                         <h2>_X</h2>
 
                         <div class="d-block float-right">
-                            {% for option in f.choices %}
-                                <label for="{{f.name}}-second">
-                                    <input type="radio" name="{{f.name}}-second" value="{{option}}"/>{{option}}
-                                </label>
-                            {% endfor %}
+                            <ul>
+                                {% for option in f.choices %}
+                                    <li>
+                                        <label for="{{f.name}}-second">
+                                            <input type="radio" name="{{f.name}}-second" value="{{option}}"/>{{option}}
+                                        </label>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
 
                     </div>
